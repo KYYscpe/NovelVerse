@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NovelVerse — Pilih</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="pick">
+  <div class="wrap topbar">
+    <div class="card inner">
+      <div class="brand">
+        <div class="logo">NV</div>
+        <div>
+          <b>NovelVerse</b>
+          <small>Baca • Tulis • Like (Permanen)</small>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="a active" href="index.html">Pilih</a>
+        <a class="a" href="create.html">Buat</a>
+        <a class="a" href="read.html">Baca</a>
+      </div>
+
+      <div class="userbox">
+        <div class="pill" id="userPill">Guest</div>
+        <button class="btn" id="loginBtn">Login</button>
+        <button class="btn primary" id="registerBtn">Register</button>
+        <button class="btn danger" id="logoutBtn" style="display:none">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap page">
+    <div class="card panel">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <h1 class="h1">Pilih Novel</h1>
+          <p class="sub">Data tersimpan permanen di Vercel Postgres. Cover tersimpan di Vercel Blob.</p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <input id="search" placeholder="Cari judul/tag/author..." style="width:min(320px,100%)" />
+          <select id="sort" class="btn" style="padding:10px 12px">
+            <option value="new">Terbaru</option>
+            <option value="likes">Terbanyak Like</option>
+            <option value="title">Judul A-Z</option>
+          </select>
+          <button class="btn primary" id="goCreate">+ Buat Novel</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div id="grid" class="grid"></div>
+
+    <div id="empty" class="card panel" style="margin-top:14px;display:none;text-align:center;color:rgba(255,255,255,.75)">
+      Belum ada novel. Klik <b>+ Buat Novel</b> untuk mulai.
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal" id="authModal">
+    <div class="back" data-close="1"></div>
+    <div class="box">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <b style="font-size:16px">Akun</b>
+        <button class="x" data-close="1">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button class="btn tab" id="tabLogin">Login</button>
+        <button class="btn tab primary" id="tabRegister">Register</button>
+      </div>
+
+      <div id="panelLogin">
+        <div class="field">
+          <label>Email</label>
+          <input id="lEmail" placeholder="email@domain.com" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="lPass" type="password" placeholder="••••••" />
+        </div>
+        <button class="btn primary" id="doLogin" style="width:100%;margin-top:12px">Login</button>
+        <div class="msg" id="loginMsg"></div>
+      </div>
+      
+<input id="search" placeholder="Cari judul/tag/author..." />
+<select id="sort">
+  <option value="new">Terbaru</option>
+  <option value="likes">Terbanyak Like</option>
+  <option value="title">Judul A-Z</option>
+</select>
+
+<div style="margin-top:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+  <div style="color:rgba(255,255,255,.65);font-size:13px">
+    Filter Tag: <span id="tagHint" style="color:rgba(255,255,255,.45)"></span>
+  </div>
+  <button class="btn" id="clearTags">Clear Tag</button>
+</div>
+<div id="tagFilters" class="tags" style="margin-top:10px"></div>
+
+<div id="grid" class="grid"></div>
+<div id="empty" style="display:none">Belum ada novel</div>
+
+
+      <div id="panelRegister" style="display:none">
+  <div class="field">
+    <label>Email</label>
+    <input id="rEmail" placeholder="email@domain.com" />
+  </div>
+  <div class="field">
+    <label>Password (min 6)</label>
+    <input id="rPass" type="password" placeholder="••••••" />
+  </div>
+  <div class="field">
+    <label>Kode Verifikasi (6 digit)</label>
+    <input id="rCode" placeholder="123456" />
+  </div>
+
+  <button class="btn" id="sendCodeBtn" style="width:100%;margin-top:10px">Kirim Kode ke Gmail</button>
+  <button class="btn primary" id="doRegister" style="width:100%;margin-top:10px">Register</button>
+  <div class="msg" id="registerMsg"></div>
+</div>
+
+      <div class="msg" style="margin-top:10px;color:rgba(255,255,255,.5)">
+        Login/register ini beneran (session cookie httpOnly, data user di DB).
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

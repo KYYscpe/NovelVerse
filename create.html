@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NovelVerse — Buat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="create">
+  <div class="wrap topbar">
+    <div class="card inner">
+      <div class="brand">
+        <div class="logo">NV</div>
+        <div>
+          <b>NovelVerse</b>
+          <small>Buat novel (wajib login)</small>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="a" href="index.html">Pilih</a>
+        <a class="a active" href="create.html">Buat</a>
+        <a class="a" href="read.html">Baca</a>
+      </div>
+
+      <div class="userbox">
+        <div class="pill" id="userPill">Guest</div>
+        <button class="btn" id="loginBtn">Login</button>
+        <button class="btn primary" id="registerBtn">Register</button>
+        <button class="btn danger" id="logoutBtn" style="display:none">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap page">
+    <div class="card panel">
+      <h1 class="h1">Buat Novel</h1>
+      <p class="sub">Kalau belum login/register, kamu tidak bisa upload/simpan novel (server akan tolak).</p>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div class="split">
+      <div id="createLockBox" class="card panel">
+        <b style="font-size:15px">Info Novel</b>
+
+        <div class="field">
+          <label>Judul</label>
+          <input id="title" maxlength="80" placeholder="Judul novel..." />
+        </div>
+
+        <div class="field">
+          <label>Tag (koma)</label>
+          <input id="tags" placeholder="romantis, komedi, fantasi..." />
+        </div>
+
+        <div class="field">
+          <label>Sinopsis</label>
+          <textarea id="synopsis" placeholder="Ringkasan..." maxlength="2000"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Cover (maks ~2.5MB)</label>
+          <input id="coverFile" type="file" accept="image/*" />
+          <div style="display:flex;gap:12px;align-items:flex-start;margin-top:10px;flex-wrap:wrap">
+            <div class="rcover" style="width:180px;height:220px" id="coverPreview"></div>
+            <div style="color:rgba(255,255,255,.6);font-size:12.5px;max-width:380px">
+              Cover akan diupload ke Vercel Blob dan dapat URL permanen.
+              <div style="margin-top:8px">
+                <button class="btn" id="removeCover">Hapus Cover</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn primary" id="saveNovel" style="width:100%;margin-top:14px">Simpan Novel (Permanen)</button>
+        <div class="msg" id="saveMsg"></div>
+      </div>
+
+      <div class="card panel">
+        <b style="font-size:15px">Chapter</b>
+
+        <div class="field">
+          <label>Judul chapter (opsional)</label>
+          <input id="cTitle" maxlength="80" placeholder="Chapter 1: ..." />
+        </div>
+        <div class="field">
+          <label>Isi chapter</label>
+          <textarea id="cBody" placeholder="Tulis cerita..." style="min-height:180px"></textarea>
+        </div>
+
+        <button class="btn" id="addChapter">+ Tambah Chapter</button>
+
+        <div style="margin-top:14px;color:rgba(255,255,255,.7);font-size:13px">
+          Daftar chapter:
+        </div>
+        <div id="chapterList" style="margin-top:10px;display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL (same) -->
+  <div class="modal" id="authModal">
+    <div class="back" data-close="1"></div>
+    <div class="box">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <b style="font-size:16px">Akun</b>
+        <button class="x" data-close="1">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button class="btn tab" id="tabLogin">Login</button>
+        <button class="btn tab primary" id="tabRegister">Register</button>
+      </div>
+
+      <div id="panelLogin">
+        <div class="field">
+          <label>Email</label>
+          <input id="lEmail" placeholder="email@domain.com" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="lPass" type="password" placeholder="••••••" />
+        </div>
+        <button class="btn primary" id="doLogin" style="width:100%;margin-top:12px">Login</button>
+        <div class="msg" id="loginMsg"></div>
+      </div>
+
+      <div id="panelRegister" style="display:none">
+        <div class="field">
+          <label>Email</label>
+          <input id="rEmail" placeholder="email@domain.com" />
+        </div>
+        <div class="field">
+          <label>Password (min 6)</label>
+          <input id="rPass" type="password" placeholder="••••••" />
+        </div>
+        <button class="btn primary" id="doRegister" style="width:100%;margin-top:12px">Register</button>
+        <div class="msg" id="registerMsg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

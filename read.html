@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NovelVerse — Baca</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="read">
+  <div class="wrap topbar">
+    <div class="card inner">
+      <div class="brand">
+        <div class="logo">NV</div>
+        <div>
+          <b>NovelVerse</b>
+          <small>Baca novel</small>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="a" href="index.html">Pilih</a>
+        <a class="a" href="create.html">Buat</a>
+        <a class="a active" href="read.html">Baca</a>
+      </div>
+
+      <div class="userbox">
+        <div class="pill" id="userPill">Guest</div>
+        <button class="btn" id="loginBtn">Login</button>
+        <button class="btn primary" id="registerBtn">Register</button>
+        <button class="btn danger" id="logoutBtn" style="display:none">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap page">
+    <div class="card panel">
+      <h1 class="h1" id="rTitle">Baca</h1>
+      <p class="sub" id="rMeta">Pilih novel dari halaman Pilih.</p>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div class="reader">
+      <div>
+        <div class="rcover" id="rCover"></div>
+
+        <div class="card panel" style="margin-top:14px">
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+            <div style="color:rgba(255,255,255,.75)" id="rLikes">0 likes</div>
+            <button class="btn primary" id="likeBtn">♥ Like</button>
+          </div>
+
+          <div class="tags" id="rTags" style="margin-top:10px"></div>
+
+          <div style="margin-top:14px;color:rgba(255,255,255,.75);font-weight:900">Daftar Chapter</div>
+          <div class="toc" id="toc"></div>
+        </div>
+      </div>
+
+      <div id="chaptersWrap"></div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL (same) -->
+  <div class="modal" id="authModal">
+    <div class="back" data-close="1"></div>
+    <div class="box">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <b style="font-size:16px">Akun</b>
+        <button class="x" data-close="1">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button class="btn tab" id="tabLogin">Login</button>
+        <button class="btn tab primary" id="tabRegister">Register</button>
+      </div>
+
+      <div id="panelLogin">
+        <div class="field">
+          <label>Email</label>
+          <input id="lEmail" placeholder="email@domain.com" />
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input id="lPass" type="password" placeholder="••••••" />
+        </div>
+        <button class="btn primary" id="doLogin" style="width:100%;margin-top:12px">Login</button>
+        <div class="msg" id="loginMsg"></div>
+      </div>
+
+      <div id="panelRegister" style="display:none">
+        <div class="field">
+          <label>Email</label>
+          <input id="rEmail" placeholder="email@domain.com" />
+        </div>
+        
+        <div class="field">
+          <label>Password (min 6)</label>
+          <input id="rPass" type="password" placeholder="••••••" />
+        </div>
+        <button class="btn primary" id="doRegister" style="width:100%;margin-top:12px">Register</button>
+        <div class="msg" id="registerMsg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
